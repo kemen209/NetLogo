@@ -34,18 +34,18 @@ object PackageMacAggregate {
   }
 
   def createBundleDir(log: Logger, version: String, destDir: File, configDir: File, launchers: Seq[Launcher]): File = {
-    val buildName = s"NetLogo-$version"
+    val buildName = s"InSight-$version"
 
-    val bundleDir     = destDir / s"NetLogo $version"
+    val bundleDir     = destDir / s"InSight $version"
     val bundleLibsDir = bundleDir / "app"
     IO.createDirectory(bundleDir)
     IO.createDirectory(bundleLibsDir)
 
     val plistConfig = Map(
-      "NetLogo" -> Map(
-        "appName"             -> s"NetLogo $version"
+      "InSight" -> Map(
+        "appName"             -> s"InSight $version"
       , "bundleIdentifier"    -> "org.nlogo.NetLogo"
-      , "bundleName"          -> "NetLogo"
+      , "bundleName"          -> "InSight"
       , "bundleSignature"     -> "nLo1"
       , "fileAssociation"     -> "nlogo"
       , "fileAssociationIcon" -> "Model.icns"
@@ -53,10 +53,10 @@ object PackageMacAggregate {
       , "packageID"           -> "APPLnLo1"
       , "version"             -> version
      )
-    , "NetLogo 3D" -> Map(
-        "appName"             -> s"NetLogo 3D $version"
+    , "InSight 3D" -> Map(
+        "appName"             -> s"InSight 3D $version"
       , "bundleIdentifier"    -> "org.nlogo.NetLogo3D"
-      , "bundleName"          -> "NetLogo"
+      , "bundleName"          -> "InSight"
       , "bundleSignature"     -> "nLo1"
       , "fileAssociation"     -> "nlogo3d"
       , "fileAssociationIcon" -> "Model.icns"
@@ -138,11 +138,11 @@ object PackageMacAggregate {
   , webDir: File
   , launchers: Seq[Launcher]
   ): File = {
-    val buildName = s"NetLogo $version"
+    val buildName = s"InSight $version"
     (bundleDir / "runtime" / "Contents" / "Home" / "lib" / "jspawnhelper").setExecutable(true)
 
     log.info("Creating NetLogo_Console sym link")
-    FileActions.createRelativeSoftLink(bundleDir / "NetLogo_Console", bundleDir / s"$buildName.app" / "Contents" / "MacOS" / buildName)
+    FileActions.createRelativeSoftLink(bundleDir / "InSight_Console", bundleDir / s"$buildName.app" / "Contents" / "MacOS" / buildName)
 
     log.info("Gathering files to sign")
     val appNames = launchers.map(_.id)

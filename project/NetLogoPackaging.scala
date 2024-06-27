@@ -76,7 +76,7 @@ object NetLogoPackaging {
       (netlogo / allDocs).value
       (netlogo / allPreviews).toTask("").value
       resaveModels.value
-      buildMathematicaLink.value
+    //   buildMathematicaLink.value
       (behaviorsearchProject / Compile / packageBin).value
     },
 
@@ -88,10 +88,10 @@ object NetLogoPackaging {
 
     resaveModels := (resaveModels dependsOn (netlogo / extensions)).value,
 
-    buildMathematicaLink := {
-      val sbt = if (System.getProperty("os.name").contains("Windows")) "sbt.bat" else "sbt"
-      RunProcess(Seq(sbt, "package"), mathematicaRoot.value, "package mathematica link")
-    },
+    // buildMathematicaLink := {
+    //   val sbt = if (System.getProperty("os.name").contains("Windows")) "sbt.bat" else "sbt"
+    //   RunProcess(Seq(sbt, "package"), mathematicaRoot.value, "package mathematica link")
+    // },
 
     packagedMathematicaLink := {
       val mathematicaLinkDir = mathematicaRoot.value
@@ -233,7 +233,7 @@ object NetLogoPackaging {
       , version
       , buildJDK.arch
       , configDir
-      , destDir / "NetLogo"
+      , destDir / "InSight"
       , webTarget.value
       , extraDirs
       , mainLauncher +: launchers
@@ -297,7 +297,7 @@ object NetLogoPackaging {
       , version
       , buildJDK.arch
       , configDir
-      , destDir / "NetLogo"
+      , destDir / "InSight"
       , webTarget.value
       , variables
       , mainLauncher +: launchers
@@ -340,27 +340,27 @@ object NetLogoPackaging {
           version
         , Some("NetLogo.icns")
         , extraJavaOptions ++ Seq(
-            "-Xdock:name=NetLogo"
+            "-Xdock:name=InSight"
           , "-Dorg.nlogo.mac.appClassName=org.nlogo.app.App$"
           )
         , Seq()
         , Some("netlogo-mac-app.jar")
         , Some("org.nlogo.app.MacApplication")
         ) {
-          override def name = s"NetLogo ${this.version}"
+          override def name = s"InSight ${this.version}"
         }
       , new NetLogo3dLauncher(
           version
         , Some("NetLogo.icns")
         , extraJavaOptions ++ Seq(
-            "\"-Xdock:name=NetLogo 3D\""
+            "\"-Xdock:name=InSight 3D\""
           , "-Dorg.nlogo.mac.appClassName=org.nlogo.app.App$"
           )
         , Seq()
         , Some("netlogo-mac-app.jar")
         , Some("org.nlogo.app.MacApplication")
         ) {
-          override def name = s"NetLogo 3D ${this.version}"
+          override def name = s"InSight 3D ${this.version}"
         }
       , new HubNetClientLauncher(
           version
@@ -407,7 +407,7 @@ object NetLogoPackaging {
         FileActions.copyFile(configDir / "macosx" / "Model.icns", destDir / s"${launcher.name}.app" / "Contents" / "Resources" / "Model.icns")
       })
 
-      val appImageDir = destDir / s"NetLogo ${version}"
+      val appImageDir = destDir / s"InSight ${version}"
       FileActions.remove(appImageDir)
       val extraDirs = bundledDirs(netlogo, behaviorsearchProject).value(platform, buildJDK.arch)
       JavaPackager.copyExtraFiles(log, extraDirs, platform, buildJDK.arch, appImageDir, appImageDir, rootFiles)
