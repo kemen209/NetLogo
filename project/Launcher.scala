@@ -54,7 +54,7 @@ class NetLogoLauncher(
 , customMainJar: Option[String] = None
 , customMainClass: Option[String] = None
 ) extends Launcher {
-  def id: String = "NetLogo"
+  def id: String = "InSight"
   def mustachePrefix: String = "n/a"
   def javaOptions: Seq[String] = Launcher.defaultJavaOptions ++ extraJavaOptions
   def mainJar: String = customMainJar.getOrElse(s"netlogo-$version.jar")
@@ -69,7 +69,7 @@ class NetLogo3dLauncher(
 , customMainJar: Option[String] = None
 , customMainClass: Option[String] = None
 ) extends Launcher {
-  def id: String = "NetLogo 3D"
+  def id: String = "InSight 3D"
   def mustachePrefix: String = "netlogo-3d-launcher"
   def javaOptions: Seq[String] = Launcher.defaultJavaOptions ++ Seq("-Dorg.nlogo.is3d=true") ++ extraJavaOptions
   def mainJar: String = customMainJar.getOrElse(s"netlogo-$version.jar")

@@ -14,7 +14,7 @@ object Running {
       "-Dfile.encoding=UTF-8",
       "-Dapple.awt.graphics.UseQuartz=true") ++
     (if(System.getProperty("os.name").startsWith("Mac"))
-      Seq("-Xdock:name=NetLogo")
+      Seq("-Xdock:name=InSight")
       else Seq()) ++
     (if(System.getProperty("org.nlogo.is3d") == "true")
       Seq("-Dorg.nlogo.is3d=true")

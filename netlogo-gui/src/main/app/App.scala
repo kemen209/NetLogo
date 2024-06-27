@@ -662,8 +662,8 @@ class App extends
   lazy val allActions: Seq[javax.swing.Action] = {
     // If we're running in the mac wrapper, it takes care of displaying these
     // items for us - RG 2/26/18
-    val osSpecificActions =
-      if (runningInMacWrapper) Seq() else Seq(openPreferencesDialog, openAboutDialog)
+    val osSpecificActions = Seq(openPreferencesDialog)
+    //   if (runningInMacWrapper) Seq() else Seq(openPreferencesDialog, openAboutDialog)
 
     val workspaceActions = org.nlogo.window.WorkspaceActions(workspace)
 
@@ -885,16 +885,16 @@ class App extends
   private def frameTitle(filename: String, dirty: Boolean) = {
     val title =
       // on OS X, use standard window title format. otherwise use Windows convention
-      if(! System.getProperty("os.name").startsWith("Mac")) s"$filename - NetLogo"
+      if(! System.getProperty("os.name").startsWith("Mac")) s"$filename - InSight"
       // 8212 is the unicode value for an em dash. we use the number since
       // we don't want non-ASCII characters in the source files -- AZS 6/14/2005
-      else s"NetLogo ${8212.toChar} $filename"
+      else s"InSight ${8212.toChar} $filename"
 
     if (dirty) s"* $title" else title
   }
 
   private def modelTitle(allowDirtyMarker: Boolean = true) = {
-    if (workspace.getModelFileName == null) "NetLogo"
+    if (workspace.getModelFileName == null) "InSight"
     else {
       val title = frameTitle(workspace.modelNameForDisplay, allowDirtyMarker && dirtyMonitor.modelDirty)
       // OS X UI guidelines prohibit paths in title bars, but oh well...

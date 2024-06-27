@@ -132,10 +132,10 @@ object PackageWinAggregate {
           "hasFileAssociation"    -> Boolean.box(false)
         ) ++ baseComponentVariables,
         Map[String, AnyRef](
-          "componentFriendlyName"  -> "NetLogo",
-          "noSpaceName"            -> "NetLogo",
-          "componentId"            -> "NetLogo.exe",
-          "componentFileName"      -> "NetLogo.exe",
+          "componentFriendlyName"  -> "InSight",
+          "noSpaceName"            -> "InSight",
+          "componentId"            -> "InSight.exe",
+          "componentFileName"      -> "InSight.exe",
           "lowerDashName"          -> "netlogo",
           "componentGuid"          -> winVariables("nlogoExecutableId"),
           "desktopShortcutId"      -> winVariables("NetLogoDesktopShortcutId"),
@@ -144,13 +144,13 @@ object PackageWinAggregate {
           "fileAssociation"        -> "nlogo",
           "fileIcon"               -> "ModelIcon",
           "launchArgs"             -> """--launch "%1"""",
-          "associationDescription" -> "NetLogo Model"
+          "associationDescription" -> "InSight Model"
         ) ++ baseComponentVariables,
         Map[String, AnyRef](
-          "componentFriendlyName"  -> "NetLogo 3D",
-          "noSpaceName"            -> "NetLogo3D",
-          "componentId"            -> "NetLogo_3D.exe",
-          "componentFileName"      -> "NetLogo 3D.exe",
+          "componentFriendlyName"  -> "InSight 3D",
+          "noSpaceName"            -> "InSight3D",
+          "componentId"            -> "InSight_3D.exe",
+          "componentFileName"      -> "InSight 3D.exe",
           "lowerDashName"          -> "netlogo-3d",
           "componentGuid"          -> winVariables("nlogo3DExecutableId"),
           "desktopShortcutId"      -> winVariables("NetLogo3DDesktopShortcutId"),
