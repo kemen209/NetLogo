@@ -34,18 +34,18 @@ object PackageMacAggregate {
   }
 
   def createBundleDir(log: Logger, version: String, destDir: File, configDir: File, launchers: Seq[Launcher]): File = {
-    val buildName = s"InSight-$version"
+    val buildName = s"ISNetLogo-$version"
 
-    val bundleDir     = destDir / s"InSight $version"
+    val bundleDir     = destDir / s"ISNetLogo $version"
     val bundleLibsDir = bundleDir / "app"
     IO.createDirectory(bundleDir)
     IO.createDirectory(bundleLibsDir)
 
     val plistConfig = Map(
-      "InSight" -> Map(
-        "appName"             -> s"InSight $version"
+      "ISNetLogo" -> Map(
+        "appName"             -> s"ISNetLogo $version"
       , "bundleIdentifier"    -> "org.nlogo.NetLogo"
-      , "bundleName"          -> "InSight"
+      , "bundleName"          -> "ISNetLogo"
       , "bundleSignature"     -> "nLo1"
       , "fileAssociation"     -> "nlogo"
       , "fileAssociationIcon" -> "Model.icns"
@@ -53,10 +53,10 @@ object PackageMacAggregate {
       , "packageID"           -> "APPLnLo1"
       , "version"             -> version
      )
-    , "InSight 3D" -> Map(
-        "appName"             -> s"InSight 3D $version"
+    , "ISNetLogo 3D" -> Map(
+        "appName"             -> s"ISNetLogo 3D $version"
       , "bundleIdentifier"    -> "org.nlogo.NetLogo3D"
-      , "bundleName"          -> "InSight"
+      , "bundleName"          -> "ISNetLogo"
       , "bundleSignature"     -> "nLo1"
       , "fileAssociation"     -> "nlogo3d"
       , "fileAssociationIcon" -> "Model.icns"
@@ -138,11 +138,11 @@ object PackageMacAggregate {
   , webDir: File
   , launchers: Seq[Launcher]
   ): File = {
-    val buildName = s"InSight $version"
+    val buildName = s"ISNetLogo $version"
     (bundleDir / "runtime" / "Contents" / "Home" / "lib" / "jspawnhelper").setExecutable(true)
 
     log.info("Creating NetLogo_Console sym link")
-    FileActions.createRelativeSoftLink(bundleDir / "InSight_Console", bundleDir / s"$buildName.app" / "Contents" / "MacOS" / buildName)
+    FileActions.createRelativeSoftLink(bundleDir / "ISNetLogo_Console", bundleDir / s"$buildName.app" / "Contents" / "MacOS" / buildName)
 
     log.info("Gathering files to sign")
     val appNames = launchers.map(_.id)

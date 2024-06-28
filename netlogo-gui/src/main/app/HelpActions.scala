@@ -56,9 +56,7 @@ object HelpActions {
     new RemoteBrowseAction(I18N.gui.get("menu.help.netLogoUsersGroup"),
       new URI("http://groups.google.com/d/forum/netlogo-users")),
     new RemoteBrowseAction(I18N.gui.get("menu.help.introToABM"),
-      new URI("https://mitpress.mit.edu/books/introduction-agent-based-modeling")),
-    new RemoteBrowseAction(I18N.gui.get("menu.help.donate"),
-      new URI("http://ccl.northwestern.edu/netlogo/giving.shtml")) {
+      new URI("https://mitpress.mit.edu/books/introduction-agent-based-modeling")) {
       putValue(ActionGroupKey, HelpAboutGroup)
     })
   }

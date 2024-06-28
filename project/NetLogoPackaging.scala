@@ -233,7 +233,7 @@ object NetLogoPackaging {
       , version
       , buildJDK.arch
       , configDir
-      , destDir / "InSight"
+      , destDir / "ISNetLogo"
       , webTarget.value
       , extraDirs
       , mainLauncher +: launchers
@@ -297,7 +297,7 @@ object NetLogoPackaging {
       , version
       , buildJDK.arch
       , configDir
-      , destDir / "InSight"
+      , destDir / "ISNetLogo"
       , webTarget.value
       , variables
       , mainLauncher +: launchers
@@ -340,27 +340,27 @@ object NetLogoPackaging {
           version
         , Some("NetLogo.icns")
         , extraJavaOptions ++ Seq(
-            "-Xdock:name=InSight"
+            "-Xdock:name=ISNetLogo"
           , "-Dorg.nlogo.mac.appClassName=org.nlogo.app.App$"
           )
         , Seq()
         , Some("netlogo-mac-app.jar")
         , Some("org.nlogo.app.MacApplication")
         ) {
-          override def name = s"InSight ${this.version}"
+          override def name = s"ISNetLogo ${this.version}"
         }
       , new NetLogo3dLauncher(
           version
         , Some("NetLogo.icns")
         , extraJavaOptions ++ Seq(
-            "\"-Xdock:name=InSight 3D\""
+            "\"-Xdock:name=ISNetLogo 3D\""
           , "-Dorg.nlogo.mac.appClassName=org.nlogo.app.App$"
           )
         , Seq()
         , Some("netlogo-mac-app.jar")
         , Some("org.nlogo.app.MacApplication")
         ) {
-          override def name = s"InSight 3D ${this.version}"
+          override def name = s"ISNetLogo 3D ${this.version}"
         }
       , new HubNetClientLauncher(
           version
@@ -407,7 +407,7 @@ object NetLogoPackaging {
         FileActions.copyFile(configDir / "macosx" / "Model.icns", destDir / s"${launcher.name}.app" / "Contents" / "Resources" / "Model.icns")
       })
 
-      val appImageDir = destDir / s"InSight ${version}"
+      val appImageDir = destDir / s"ISNetLogo ${version}"
       FileActions.remove(appImageDir)
       val extraDirs = bundledDirs(netlogo, behaviorsearchProject).value(platform, buildJDK.arch)
       JavaPackager.copyExtraFiles(log, extraDirs, platform, buildJDK.arch, appImageDir, appImageDir, rootFiles)

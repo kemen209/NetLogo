@@ -86,9 +86,9 @@ object JavaPackager {
                                                // it might not be needed for jpackage AAB April 2022
       "Created-By"                    -> "JavaFX Packager",
       IMPLEMENTATION_VENDOR.toString  -> "org.nlogo",
-      IMPLEMENTATION_TITLE.toString   -> "InSight",
+      IMPLEMENTATION_TITLE.toString   -> "ISNetLogo",
       SPECIFICATION_VENDOR.toString   -> "org.nlogo",
-      SPECIFICATION_TITLE.toString    -> "InSight"
+      SPECIFICATION_TITLE.toString    -> "ISNetLogo"
     )
   }
 

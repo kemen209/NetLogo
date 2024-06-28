@@ -163,7 +163,7 @@ lazy val netlogo = project.in(file("netlogo-gui")).
           GUISettings.settings ++
           Depend.dependTask: _*).
   settings(
-    name := "InSight",
+    name := "ISNetLogo",
     version := "6.4.0",
     isSnapshot := true,
     publishTo := { Some("Cloudsmith API" at "https://maven.cloudsmith.io/netlogo/netlogo/") },

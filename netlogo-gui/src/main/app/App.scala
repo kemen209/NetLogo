@@ -885,16 +885,16 @@ class App extends
   private def frameTitle(filename: String, dirty: Boolean) = {
     val title =
       // on OS X, use standard window title format. otherwise use Windows convention
-      if(! System.getProperty("os.name").startsWith("Mac")) s"$filename - InSight"
+      if(! System.getProperty("os.name").startsWith("Mac")) s"$filename - ISNetLogo"
       // 8212 is the unicode value for an em dash. we use the number since
       // we don't want non-ASCII characters in the source files -- AZS 6/14/2005
-      else s"InSight ${8212.toChar} $filename"
+      else s"ISNetLogo ${8212.toChar} $filename"
 
     if (dirty) s"* $title" else title
   }
 
   private def modelTitle(allowDirtyMarker: Boolean = true) = {
-    if (workspace.getModelFileName == null) "InSight"
+    if (workspace.getModelFileName == null) "ISNetLogo"
     else {
       val title = frameTitle(workspace.modelNameForDisplay, allowDirtyMarker && dirtyMonitor.modelDirty)
       // OS X UI guidelines prohibit paths in title bars, but oh well...
