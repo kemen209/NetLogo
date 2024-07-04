@@ -8,21 +8,21 @@ trait Version {
 
   val noVersion =
     if (is3D)
-      "NetLogo 3D (no version)"
+      "ISNetLogo 3D (no version)"
     else
-      "NetLogo (no version)"
+      "ISNetLogo (no version)"
 
   val (version, versionDropZeroPatch, buildDate, knownVersions) = {
     val lines = Resource.lines("/version.txt").toSeq
 
-    val lines2 = Array("NetLogo 3D Preview 5",
-                       "NetLogo 3D Preview 4",
-                       "NetLogo 3D Preview 3",
-                       "NetLogo 3-D Preview 2",
-                       "NetLogo 3-D Preview 1")
+    val lines2 = Array("ISNetLogo 3D Preview 5",
+                       "ISNetLogo 3D Preview 4",
+                       "ISNetLogo 3D Preview 3",
+                       "ISNetLogo 3-D Preview 2",
+                       "ISNetLogo 3-D Preview 1")
     val version =
       if(is3D)
-        lines(0).replaceFirst("NetLogo", "NetLogo 3D")
+        lines(0).replaceFirst("ISNetLogo", "ISNetLogo 3D")
       else
         lines(0)
     val versionDropZeroPatch =
@@ -33,7 +33,7 @@ trait Version {
     knownVersions ++= lines.drop(2)
     knownVersions ++=
       (if (is3D)
-         lines.drop(2).map(_.replaceFirst("NetLogo", "NetLogo 3D"))
+         lines.drop(2).map(_.replaceFirst("ISNetLogo", "ISNetLogo 3D"))
        else
          lines2)
     knownVersions += noVersion
@@ -102,7 +102,7 @@ trait Version {
       version
 
   def versionNumberOnly =
-    version.drop("NetLogo ".size)
+    version.drop("ISNetLogo ".size)
 
   def compatibleVersion(modelVersion: String) =
     compareVersions(version, modelVersion)
@@ -123,16 +123,16 @@ trait Version {
   )
 
   private def versionNumber(v: String) =
-    if (v.startsWith("NetLogo 3D Preview"))
-      v.substring("NetLogo 3D ".length, "NetLogo 3D Preview 5".length)
-    else if (v.startsWith("NetLogo 3D 5.")) // Minor version upgrade in 5.x line IS compatible.  FD 6/2/14
-      v.substring("NetLogo 3D ".length, "NetLogo 3D 5.".length)
-    else if (v.startsWith("NetLogo 5."))
-      v.substring("NetLogo ".length, "NetLogo 5.".length)
+    if (v.startsWith("ISNetLogo 3D Preview"))
+      v.substring("ISNetLogo 3D ".length, "ISNetLogo 3D Preview 5".length)
+    else if (v.startsWith("ISNetLogo 3D 5.")) // Minor version upgrade in 5.x line IS compatible.  FD 6/2/14
+      v.substring("ISNetLogo 3D ".length, "ISNetLogo 3D 5.".length)
+    else if (v.startsWith("ISNetLogo 5."))
+      v.substring("ISNetLogo ".length, "ISNetLogo 5.".length)
     else if (v.startsWith("NetLogo 3D"))
-      v.substring("NetLogo 3D ".length, "NetLogo 3D 4.0".length)
+      v.substring("ISNetLogo 3D ".length, "ISNetLogo 3D 4.0".length)
     else
-      v.substring("NetLogo ".length, "NetLogo 4.0".length)
+      v.substring("ISNetLogo ".length, "ISNetLogo 4.0".length)
 
   def fullVersion =
     version + " (" + buildDate + ")"
