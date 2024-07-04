@@ -146,7 +146,7 @@ object NetLogoPackaging {
       FileActions.copyDirectory(webTarget.value, localSiteTarget.value)
       FileActions.copyDirectory((netlogo / modelsDirectory).value, localSiteTarget.value / "models")
       FileActions.copyDirectory(netLogoRoot.value / "docs", localSiteTarget.value / "docs")
-      FileActions.copyFile(netLogoRoot.value / "NetLogo User Manual.pdf", localSiteTarget.value / "docs" / "NetLogo User Manual.pdf")
+      FileActions.copyFile(netLogoRoot.value / "ISNetLogo User Manual.pdf", localSiteTarget.value / "docs" / "ISNetLogo User Manual.pdf")
       localSiteTarget.value
     },
 
@@ -168,8 +168,8 @@ object NetLogoPackaging {
       val host = "ccl.northwestern.edu"
       val sourceDir = netLogoRoot.value / "docs"
       val targetDir = s"/usr/local/www/netlogo/${netLogoLongVersion.value}"
-      val manualSource = netLogoRoot.value / "NetLogo User Manual.pdf"
-      val manualTarget = s"$targetDir/docs/NetLogo User Manual.pdf"
+      val manualSource = netLogoRoot.value / "ISNetLogo User Manual.pdf"
+      val manualTarget = s"$targetDir/docs/ISNetLogo User Manual.pdf"
       (netlogo / allDocs).value
       RunProcess(Seq("rsync", "-rltv", "--inplace", "--progress", sourceDir.getPath, s"$user@$host:$targetDir"), "rsync docs")
       RunProcess(Seq("rsync", "-rltv", "--inplace", "--progress", manualSource.getPath, s"$user@$host:$manualTarget"), "rsync user manual")

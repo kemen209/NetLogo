@@ -117,7 +117,7 @@ class NetLogoDocs(
   }
 
   private def generateManualPDF(htmlFileRoot: File, extensions: Seq[String]): File = {
-    val pdfFile = netLogoRoot / "NetLogo User Manual.pdf"
+    val pdfFile = netLogoRoot / "ISNetLogo User Manual.pdf"
 
     val htmldocArgs =
       Seq("wkhtmltopdf", "--enable-local-file-access",
