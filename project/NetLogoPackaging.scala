@@ -24,10 +24,10 @@ object NetLogoPackaging {
   lazy val buildMathematicaLink    = taskKey[Unit]("build and package Mathematica Link submodule")
   lazy val generateLocalWebsite    = taskKey[File]("package the web download pages")
   lazy val localSiteTarget         = settingKey[File]("directory into which local copy of the site is built")
-  lazy val mathematicaRoot         = settingKey[File]("root of Mathematica-Link directory")
+//   lazy val mathematicaRoot         = settingKey[File]("root of Mathematica-Link directory")
   lazy val netLogoLongVersion      = settingKey[String]("Long version number (including trailing zero) of NetLogo under construction")
   lazy val netLogoRoot             = settingKey[File]("Root directory of NetLogo project")
-  lazy val packagedMathematicaLink = taskKey[File]("Mathematica link, ready for packaging")
+//   lazy val packagedMathematicaLink = taskKey[File]("Mathematica link, ready for packaging")
   lazy val packageLinuxAggregate   = inputKey[File]("package all linux apps into a single directory")
   lazy val packageMacAggregate     = taskKey[File]("package all mac apps into a dmg")
   lazy val packageWinAggregate     = inputKey[File]("package all win apps into a single directory")
@@ -65,7 +65,7 @@ object NetLogoPackaging {
 
   def settings(netlogo: Project, macApp: Project, behaviorsearchProject: Project): Seq[Setting[_]] = Seq(
     netLogoRoot     := (netlogo / baseDirectory).value,
-    mathematicaRoot := netLogoRoot.value.getParentFile / "Mathematica-Link",
+    // mathematicaRoot := netLogoRoot.value.getParentFile / "Mathematica-Link",
     configRoot      := baseDirectory.value / "configuration",
     localSiteTarget := target.value / marketingVersion.value,
     aggregateJDKParser := Def.toSParser(jdkParser),
@@ -93,22 +93,22 @@ object NetLogoPackaging {
     //   RunProcess(Seq(sbt, "package"), mathematicaRoot.value, "package mathematica link")
     // },
 
-    packagedMathematicaLink := {
-      val mathematicaLinkDir = mathematicaRoot.value
-      IO.createDirectory(target.value / "Mathematica Link")
-      Seq(
-        mathematicaLinkDir / "NetLogo-Mathematica Tutorial.nb",
-        mathematicaLinkDir / "NetLogo-Mathematica Tutorial.pdf",
-        mathematicaLinkDir / "NetLogo.m",
-        mathematicaLinkDir / "target" / "mathematica-link.jar")
-        .foreach { f =>
-          FileActions.copyFile(f, target.value / "Mathematica Link" / f.getName)
-        }
-      target.value / "Mathematica Link"
-    },
+    // packagedMathematicaLink := {
+    //   val mathematicaLinkDir = mathematicaRoot.value
+    //   IO.createDirectory(target.value / "Mathematica Link")
+    //   Seq(
+    //     mathematicaLinkDir / "NetLogo-Mathematica Tutorial.nb",
+    //     mathematicaLinkDir / "NetLogo-Mathematica Tutorial.pdf",
+    //     mathematicaLinkDir / "NetLogo.m",
+    //     mathematicaLinkDir / "target" / "mathematica-link.jar")
+    //     .foreach { f =>
+    //       FileActions.copyFile(f, target.value / "Mathematica Link" / f.getName)
+    //     }
+    //   target.value / "Mathematica Link"
+    // },
     aggregateOnlyFiles := {
       Mustache(baseDirectory.value / "readme.md", target.value / "readme.md", buildVariables.value)
-      Seq(target.value / "readme.md", netLogoRoot.value / "NetLogo User Manual.pdf", packagedMathematicaLink.value)
+      Seq(target.value / "readme.md", netLogoRoot.value / "ISNetLogo User Manual.pdf")
     },
     buildVariables := Map[String, String](
       "version"            -> marketingVersion.value,
