@@ -104,7 +104,13 @@ object Extensions {
     val formatCommand = Option(System.getProperty("sbt.log.noformat")).map( (o) =>
       s"-Dsbt.log.noformat=$o"
     ).toSeq
-    val sbtCommand = Seq("sbt", s"-Dnetlogo.jar.file=${netlogoJarPath}") ++ formatCommand ++ Seq(command)
+    val sbtEntry = {
+        System.getProperty("os.name").toLowerCase match {
+            case win if win.contains("win") => "sbt.bat"
+            case osName => "sbt"
+        }
+    }
+    val sbtCommand = Seq(sbtEntry, s"-Dnetlogo.jar.file=${netlogoJarPath}") ++ formatCommand ++ Seq(command)
     val result = Process(sbtCommand, dir).!
     assert(result == 0, s"failed to ${command} ${dir.getName}, exitCode = ${result}")
   }
